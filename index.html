@@ -689,6 +689,63 @@
                 margin: 0.5rem 0;
             }
         }
+
+        /* 이미지 공통 스타일 */
+        .brand-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            display: block;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .brand-image:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 히어로 섹션 전용 스타일 */
+        .hero-image {
+            max-width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            margin: 2.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* 제품 카드 이미지 */
+        .product-image {
+            width: 100%;
+            height: 220px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* 프로세스 카드 이미지 */
+        .process-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
     </style>
 </head>
 <body>
@@ -721,9 +778,12 @@
                     매년 색이 변하는 수국을 통해 아이와 다시 교감하는 새로운 추모 방식입니다.
                 </p>
                 
-                <div class="img-prompt-box">
-                    <span class="img-prompt-label">🎨 메인 히어로 이미지</span>
-                    따뜻한 햇살이 들어오는 거실 창가의 깨끗한 화이트 인테리어. 테이블 위에 파스텔 톤(연한 파랑 또는 보라색)의 풍성한 수국이 심겨진 심플하고 모던한 화분이 놓여있다. 화분 옆에는 반려동물의 작은 사진 액자가 자연스럽게 배치되어 평화롭고 따뜻한 분위기를 연출한다. 고해상도, 자연광, 감성적인 분위기.
+                <!-- 기존의 <div class="img-prompt-box">...</div> 전체를 아래 코드로 교체 -->
+                <div style="text-align: center;">
+                    <img src="./images/hero-main.webp" 
+                        alt="따뜻한 거실 창가에 놓인 수국 화분과 반려동물 사진" 
+                        class="hero-image"
+                        loading="lazy">
                 </div>
                 
                 <div>
@@ -756,10 +816,11 @@
                     </div>
                 </div>
                 
-                <div class="img-prompt-box">
-                    <span class="img-prompt-label">🎨 문제 제기 이미지</span>
-                    왼쪽에는 차갑고 어두운 느낌의 일반적인 도자기 유골함이 있고, 오른쪽으로 갈수록 밝은 빛과 함께 흙에서 새싹이 돋아나고 예쁜 수국 꽃이 피어나는 모습으로 변화하는 과정을 보여주는 이미지. 생명력, 환생, 치유, 희망적인 느낌의 일러스트 또는 합성 사진.
-                </div>
+             <img src="./images/problem-solution.webp" 
+                alt="차가운 유골함에서 생명력 있는 수국으로 변화하는 과정" 
+                class="brand-image"
+                loading="lazy">
+                
             </div>
         </div>
     </section>
@@ -778,28 +839,28 @@
 
             <div class="product-grid">
                 <div class="product-card fade-in">
-                    <div class="img-prompt-box" style="min-height: 180px;">
-                        <span class="img-prompt-label">🎨 PLA 화분 이미지</span>
-                        군더더기 없이 깔끔하고 둥근 곡선의 미니멀한 화분(아이보리색 또는 화이트). 표면에는 3D 프린팅 특유의 미세하고 고급스러운 결이 보임. 통기성을 위한 작은 구멍들이 디자인적으로 아름답게 배치됨. 제품 단독 촬영, 깨끗한 배경.
-                    </div>
+                  <img src="./images/product-pot.webp" 
+                        alt="친환경 PLA 소재의 통기성 화분" 
+                        class="product-image"
+                        loading="lazy">
                     <h3>01. 숨 쉬는 PLA 화분</h3>
                     <p>옥수수 전분으로 만든 친환경 소재입니다. 공기가 잘 통하고 과습을 방지하여 식물과 유골이 쾌적하게 숨 쉴 수 있는 구조로 설계되었습니다.</p>
                 </div>
 
                 <div class="product-card fade-in">
-                    <div class="img-prompt-box" style="min-height: 180px;">
-                        <span class="img-prompt-label">🎨 특수 배합토 이미지</span>
-                        부드럽고 영양가 있어 보이는 짙은 갈색의 고급 배양토가 손에 담겨있는 모습. 또는 실험실 같은 깨끗한 환경에서 정제된 흙이 투명한 용기에 담겨있는 전문적이고 안전해 보이는 이미지.
-                    </div>
+                    <img src="./images/product-soil.webp" 
+                        alt="유골 전용 특수 배합토" 
+                        class="product-image"
+                        loading="lazy">
                     <h3>02. 유골 전용 배합토</h3>
                     <p>유골의 염분을 중화시키고 pH를 조절하는 특수 기술이 적용된 토양입니다. 아이가 식물의 영양분이 되어 건강하게 자랄 수 있게 돕습니다.</p>
                 </div>
 
                 <div class="product-card fade-in">
-                    <div class="img-prompt-box" style="min-height: 180px;">
-                        <span class="img-prompt-label">🎨 수국 꽃 이미지</span>
-                        탐스럽게 피어난 수국 꽃의 클로즈업. 한 꽃송이 안에서 파란색과 보라색, 분홍색이 오묘하게 섞여있는 신비로운 색감. 이슬이 맺힌 생생하고 생명력이 느껴지는 모습. 매크로 렌즈로 촬영한 듯한 디테일.
-                    </div>
+                <img src="./images/product-hydrangea.webp" 
+                    alt="파스텔 톤의 아름다운 수국 꽃" 
+                    class="product-image"
+                    loading="lazy">
                     <h3>03. 기억의 꽃, 수국</h3>
                     <p>토양의 성분에 따라 색이 변하는 수국은 아이의 상태를 시각적으로 보여줍니다. "진심"이라는 꽃말처럼 변치 않는 사랑을 상징합니다.</p>
                 </div>
