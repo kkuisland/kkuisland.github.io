@@ -746,6 +746,34 @@
             margin-bottom: 1.5rem;
         }
 
+        /* 브랜드 스토리 이미지 전용 스타일 */
+        .story-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .story-image:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story-image-grief {
+            filter: sepia(20%) saturate(0.8);
+        }
+
+        .story-image-hope {
+            filter: saturate(1.2) brightness(1.1);
+        }
+
+        .story-image-healing {
+            filter: warmth(10%) brightness(1.05);
+        }
+
+
     </style>
 </head>
 <body>
@@ -882,30 +910,30 @@
             <div class="process-grid">
                 <div class="process-card fade-in">
                     <div class="process-number">1</div>
-                    <div class="img-prompt-box" style="min-height: 150px;">
-                        <span class="img-prompt-label">🎨 상담 이미지</span>
-                        따뜻한 분위기의 상담실 또는 화상통화 장면. 전문 상담사가 고객과 진심어린 대화를 나누는 모습. 테이블 위에는 제품 브로셔와 따뜻한 차가 놓여있음. 신뢰감과 전문성이 느껴지는 분위기.
-                    </div>
+                    <img src="./images/process-consultation.webp" 
+                            alt="전문 상담사와의 따뜻한 상담 장면" 
+                            class="process-image"
+                            loading="lazy">
                     <h3>상담 및 주문</h3>
                     <p>전화 또는 이메일로 상담을 신청해주세요. 반려동물의 상황에 맞는 적합한 화분 크기와 토양 배합을 전문가가 안내해드립니다.</p>
                 </div>
 
                 <div class="process-card fade-in">
                     <div class="process-number">2</div>
-                    <div class="img-prompt-box" style="min-height: 150px;">
-                        <span class="img-prompt-label">🎨 키트 수령 이미지</span>
-                        고급스러운 패키지 박스가 열려있고, 그 안에 화분, 토양 봉투, 수국 묘목, 상세한 설명서가 정갈하게 들어있는 모습. 선물을 받는 듯한 설렘과 정성이 느껴지는 포장.
-                    </div>
+                    <img src="./images/process-kit.webp" 
+                        alt="정성스럽게 포장된 꾸아일랜드 키트" 
+                        class="process-image"
+                        loading="lazy">
                     <h3>키트 수령 및 준비</h3>
                     <p>맞춤 제작된 화분, 특수 배합토, 수국 묘목, 그리고 상세한 설명서가 포함된 키트를 받으시게 됩니다. 모든 준비물이 포함되어 있습니다.</p>
                 </div>
 
                 <div class="process-card fade-in">
                     <div class="process-number">3</div>
-                    <div class="img-prompt-box" style="min-height: 150px;">
-                        <span class="img-prompt-label">🎨 식재 과정 이미지</span>
-                        사람의 손이 조심스럽게 화분에 흙과 유골을 섞어 담고, 어린 수국 묘목을 심는 모습. 물을 주는 장면. 새로운 시작을 알리는 싱그럽고 희망적인 분위기. 성스럽고 조심스러운 느낌.
-                    </div>
+                    <img src="./images/process-planting.webp" 
+                        alt="조심스럽게 수국을 심는 과정" 
+                        class="process-image"
+                        loading="lazy">
                     <h3>식재 및 성장</h3>
                     <p>설명서에 따라 유골과 배합토를 섞어 화분에 담고, 수국을 심습니다. 이후 일반 화분처럼 관리하면 매년 봄, 수국이 아름답게 피어납니다.</p>
                 </div>
