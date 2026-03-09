@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>초코의 추모 페이지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #764ba2;
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .memorial-header {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .pet-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 0 auto 20px;
+            display: block;
+            animation: gentle-float 3s ease-in-out infinite;
+        }
+
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .pet-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 10px;
+        }
+
+        .pet-info {
+            font-size: 1.2rem;
+            color: #718096;
+            margin-bottom: 20px;
+        }
+
+        .memorial-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #667eea;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-card h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .memory-list {
+            list-style: none;
+        }
+
+        .memory-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .memory-list li::before {
+            content: "🌟";
+            position: absolute;
+            left: 0;
+            top: 10px;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-item {
+            width: 100%;
+            height: 150px;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .interactive-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .flower-counter {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .btn-3d {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        #flowers-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: float-up 4s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .photo-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 네비게이션 -->
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="memorial.html">추모 페이지</a>
+                <a href="3d-space.html">3D 공간</a>
+                <a href="upload.html">업로드</a>
+                <a href="guestbook.html">방명록</a>
+            </div>
+            <a href="index.html" class="home-btn">🏠 홈으로</a>
+        </nav>
+
+        <!-- 헤더 -->
+        <header class="memorial-header">
+            <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=500&auto=format&fit=crop" 
+                 alt="반려견 사진" class="pet-photo">
+            <h1 class="pet-name">초코</h1>
+            <div class="pet-info">말티즈 • 2010.03.15 - 2024.11.20</div>
+            <p class="memorial-quote">
+                "너와 함께한 모든 순간이 기적이었어.<br>
+                무지개다리 너머에서 행복하게 뛰어놀고 있을 거야."
+            </p>
+        </header>
+
+        <!-- 메인 콘텐츠 -->
+        <div class="content-grid">
+            <div class="content-card">
+                <h2>함께한 추억들</h2>
+                <ul class="memory-list">
+                    <li>처음 집에 온 날, 작은 방석에서 떨면서도 꼬리를 흔들던 모습</li>
+                    <li>매일 저녁 산책길에서 신나게 뛰어다니던 시간들</li>
+                    <li>아플 때 조용히 내 곁을 지켜주던 따뜻한 체온</li>
+                    <li>햇살 좋은 날 베란다에서 함께 낮잠 자던 평화로운 오후</li>
+                    <li>마지막까지 나를 바라봐 주던 그 사랑스러운 눈빛</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2>우리 아이에게</h2>
+                <p style="line-height: 1.8; color: #4a5568;">
+                    사랑하는 초코에게,<br><br>
+                    
+                    너와 함께한 14년은 내 인생에서 가장 행복한 시간이었어. 
+                    매일 아침 꼬리 흔들며 맞아주던 너 덕분에 하루하루가 특별했어.<br><br>
+                    
+                    이제 아프지 않은 곳에서 마음껏 뛰어놀고 있을 거라 믿어. 
+                    언젠가 다시 만날 그날까지 여기서 너를 기억하며 살아갈게.<br><br>
+                    
+                    고마웠어, 사랑해.<br>
+                    <em>- 영원한 가족이 되어줘서</em>
+                </p>
+            </div>
+        </div>
+
+        <!-- 사진 갤러리 -->
+        <div class="content-card">
+            <h2>소중한 순간들</h2>
+            <div class="photo-gallery">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?q=80&w=300" class="photo-item" alt="추억1">
+                <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=300" class="photo-item" alt="추억2">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=300" class="photo-item" alt="추억3">
+                <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=300" class="photo-item" alt="추억4">
+                <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?q=80&w=300" class="photo-item" alt="추억5">
+                <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=300" class="photo-item" alt="추억6">
+            </div>
+        </div>
+
+        <!-- 인터랙티브 섹션 -->
+        <div class="interactive-section">
+            <div class="flower-counter">
+                🌸 <span id="flower-count">1,234</span>송이의 꽃이 놓여졌습니다
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="addFlower()">
+                    🌸 꽃 놓아주기
+                </button>
+                <a href="guestbook.html" class="btn btn-secondary">
+                    💌 메시지 남기기
+                </a>
+                <a href="3d-space.html" class="btn btn-3d">
+                    🏠 3D 추모 공간 입장
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="flowers-container"></div>
+
+    <script>
+        let flowerCount = 1234;
+
+        function addFlower() {
+            flowerCount++;
+            document.getElementById('flower-count').textContent = flowerCount.toLocaleString();
+
+            const container = document.getElementById('flowers-container');
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.innerHTML = Math.random() > 0.5 ? '🌸' : '🌼';
+            
+            flower.style.left = Math.random() * 90 + 5 + '%';
+            flower.style.bottom = '0px';
+            
+            container.appendChild(flower);
+
+            setTimeout(() => {
+                if (flower.parentNode) {
+                    flower.parentNode.removeChild(flower);
+                }
+            }, 4000);
+        }
+
+        // 사진 클릭 시 확대
+        document.querySelectorAll('.photo-item').forEach(img => {
+            img.addEventListener('click', function() {
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.9);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                    cursor: pointer;
+                `;
+                
+                const largeImg = document.createElement('img');
+                largeImg.src = this.src.replace('w=300', 'w=800');
+                largeImg.style.cssText = 'max-width: 90%; max-height: 90%; border-radius: 10px;';
+                
+                modal.appendChild(largeImg);
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', () => modal.remove());
+            });
+        });
+    </script>
+</body>
+</html>

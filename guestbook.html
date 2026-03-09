@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록 - 따뜻한 위로의 메시지</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #764ba2;
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .message-stats {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .message-stats h3 {
+            color: #4a5568;
+            font-size: 1.5rem;
+        }
+
+        .message-stats .count {
+            color: #667eea;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .write-message {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .write-message h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message-item {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+            animation: slide-in 0.5s ease;
+        }
+
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .message-author {
+            font-weight: bold;
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        .message-date {
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        .message-text {
+            color: #718096;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        .message-footer {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .reaction-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+
+        .reaction-btn:hover {
+            background: #f7fafc;
+        }
+
+        .reaction-btn.active {
+            background: #edf2f7;
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="memorial.html">추모 페이지</a>
+                <a href="3d-space.html">3D 공간</a>
+                <a href="upload.html">업로드</a>
+                <a href="guestbook.html">방명록</a>
+            </div>
+            <a href="index.html" class="home-btn">🏠 홈으로</a>
+        </nav>
+
+        <div class="page-header">
+            <h1>💌 방명록</h1>
+            <p>초코에게 따뜻한 위로의 메시지를 남겨주세요</p>
+        </div>
+
+        <div class="message-stats">
+            <h3>지금까지</h3>
+            <div class="count" id="messageCount">127</div>
+            <p>개의 사랑의 메시지가 전해졌습니다</p>
+        </div>
+
+        <div class="write-message">
+            <h2>✍️ 메시지 남기기</h2>
+            <form id="messageForm">
+                <div class="form-group">
+                    <label>이름 (또는 닉네임)</label>
+                    <input type="text" id="authorName" placeholder="예: 초코 이모" required>
+                </div>
+
+                <div class="form-group">
+                    <label>메시지</label>
+                    <textarea id="messageText" placeholder="초코에게 전하고 싶은 따뜻한 말을 남겨주세요..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">메시지 전달하기</button>
+            </form>
+        </div>
+
+        <div class="messages-list" id="messagesList">
+            <!-- 메시지들이 여기에 표시됩니다 -->
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            {
+                author: '🐕 옆집 뽀삐네',
+                date: '2024-11-25',
+                text: '초코야, 거기서도 우리 뽀삐랑 친하게 지내렴.\n매일 산책길에서 꼬리 흔들며 인사하던 모습이 그리워.\n많이 보고 싶어!',
+                reactions: { heart: 15, pray: 8 }
+            },
+            {
+                author: '👩 초코 이모',
+                date: '2024-11-23',
+                text: '언제나 밝고 사랑스러웠던 초코.\n무지개다리에서 행복하길 바라.\n우리 마음속에서 영원히 살아있을 거야.',
+                reactions: { heart: 23, pray: 12 }
+            },
+            {
+                author: '❤️ 초코를 사랑하는 모든 이들',
+                date: '2024-11-20',
+                text: '14년 동안 우리에게 무한한 사랑을 준 초코.\n그 사랑은 절대 잊혀지지 않을 거야.\n고마웠어, 초코야. 정말 고마웠어.',
+                reactions: { heart: 45, pray: 28 }
+            },
+            {
+                author: '🏥 담당 수의사',
+                date: '2024-11-20',
+                text: '마지막까지 용감했던 초코.\n보호자님의 사랑을 듬뿍 받으며 행복한 삶을 살았습니다.\n초코가 남긴 사랑이 위로가 되길 바랍니다.',
+                reactions: { heart: 31, pray: 19 }
+            }
+        ];
+
+        function renderMessages() {
+            const messagesList = document.getElementById('messagesList');
+            messagesList.innerHTML = '';
+
+            messages.forEach((msg, index) => {
+                const messageItem = document.createElement('div');
+                messageItem.className = 'message-item';
+                messageItem.style.animationDelay = `${index * 0.1}s`;
+                
+                messageItem.innerHTML = `
+                    <div class="message-header">
+                        <div class="message-author">${msg.author}</div>
+                        <div class="message-date">${msg.date}</div>
+                    </div>
+                    <div class="message-text">${msg.text}</div>
+                    <div class="message-footer">
+                        <button class="reaction-btn" onclick="toggleReaction(${index}, 'heart')">
+                            ❤️ ${msg.reactions.heart}
+                        </button>
+                        <button class="reaction-btn" onclick="toggleReaction(${index}, 'pray')">
+                            🙏 ${msg.reactions.pray}
+                        </button>
+                    </div>
+                `;
+                
+                messagesList.appendChild(messageItem);
+            });
+        }
+
+        function toggleReaction(index, type) {
+            messages[index].reactions[type]++;
+            renderMessages();
+        }
+
+        document.getElementById('messageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const author = document.getElementById('authorName').value;
+            const text = document.getElementById('messageText').value;
+            
+            const newMessage = {
+                author: author,
+                date: new Date().toISOString().split('T')[0],
+                text: text,
+                reactions: { heart: 0, pray: 0 }
+            };
+            
+            messages.unshift(newMessage);
+            
+            document.getElementById('messageCount').textContent = messages.length;
+            
+            renderMessages();
+            
+            this.reset();
+            
+            alert('따뜻한 메시지가 전달되었습니다. 감사합니다. 💕');
+            
+            window.scrollTo({
+                top: document.querySelector('.messages-list').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        // 초기 렌더링
+        renderMessages();
+    </script>
+</body>
+</html>

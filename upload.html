@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추억 업로드 - 새로운 사진과 물건 추가</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 30px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #764ba2;
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .upload-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .upload-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .upload-card h2 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-area {
+            border: 3px dashed #cbd5e0;
+            border-radius: 15px;
+            padding: 60px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .upload-area:hover {
+            border-color: #667eea;
+            background: #f7fafc;
+        }
+
+        .upload-area.dragover {
+            border-color: #667eea;
+            background: #edf2f7;
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .upload-subtext {
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #4a5568;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .preview-area {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .preview-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .preview-item .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(239, 68, 68, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .info-box {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .info-box h3 {
+            color: #4a5568;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .info-box ul {
+            color: #718096;
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .upload-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav-bar">
+            <div class="nav-links">
+                <a href="memorial.html">추모 페이지</a>
+                <a href="3d-space.html">3D 공간</a>
+                <a href="upload.html">업로드</a>
+                <a href="guestbook.html">방명록</a>
+            </div>
+            <a href="index.html" class="home-btn">🏠 홈으로</a>
+        </nav>
+
+        <div class="page-header">
+            <h1>📸 추억 업로드</h1>
+            <p>새로운 사진과 물건을 추모 공간에 추가해보세요</p>
+        </div>
+
+        <div class="upload-grid">
+            <!-- 사진 업로드 -->
+            <div class="upload-card">
+                <h2><span>🖼️</span> 사진 추가</h2>
+                
+                <div class="upload-area" id="photoUploadArea">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">클릭하거나 사진을 드래그하세요</div>
+                    <div class="upload-subtext">JPG, PNG 파일 지원 (최대 10MB)</div>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" multiple>
+
+                <div class="form-group">
+                    <label>사진 설명</label>
+                    <textarea placeholder="이 사진에 담긴 추억을 적어주세요..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>촬영 날짜 (선택)</label>
+                    <input type="date">
+                </div>
+
+                <div class="preview-area" id="photoPreview"></div>
+
+                <button class="btn-submit" onclick="submitPhotos()">사진 추가하기</button>
+
+                <div class="info-box">
+                    <h3>💡 사진 업로드 팁</h3>
+                    <ul>
+                        <li>선명하고 밝은 사진이 좋아요</li>
+                        <li>여러 장을 한 번에 업로드할 수 있어요</li>
+                        <li>추억이 담긴 설명을 함께 남겨주세요</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 3D 물건 업로드 -->
+            <div class="upload-card">
+                <h2><span>🎾</span> 물건 3D화</h2>
+                
+                <div class="upload-area" id="itemUploadArea">
+                    <div class="upload-icon">🎁</div>
+                    <div class="upload-text">반려견이 사용하던 물건 사진</div>
+                    <div class="upload-subtext">사료그릇, 장난감, 방석 등</div>
+                </div>
+                <input type="file" id="itemInput" accept="image/*">
+
+                <div class="form-group">
+                    <label>물건 종류</label>
+                    <select>
+                        <option value="">선택해주세요</option>
+                        <option value="bowl">사료그릇/물그릇</option>
+                        <option value="toy">장난감</option>
+                        <option value="cushion">방석/담요</option>
+                        <option value="collar">목줄/하네스</option>
+                        <option value="clothes">옷</option>
+                        <option value="other">기타</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>물건 이름</label>
+                    <input type="text" placeholder="예: 핑크 사료그릇">
+                </div>
+
+                <div class="form-group">
+                    <label>추억 이야기</label>
+                    <textarea placeholder="이 물건과 관련된 특별한 추억을 들려주세요..."></textarea>
+                </div>
+
+                <div class="preview-area" id="itemPreview"></div>
+
+                <button class="btn-submit" onclick="submitItem()">3D 공간에 추가하기</button>
+
+                <div class="info-box">
+                    <h3>✨ AI 3D 변환 안내</h3>
+                    <ul>
+                        <li>물건이 잘 보이도록 밝은 곳에서 촬영하세요</li>
+                        <li>배경이 단순할수록 좋아요</li>
+                        <li>여러 각도 사진을 올리면 더 정확해요</li>
+                        <li>처리 시간: 약 1-2분</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 사진 업로드
+        const photoUploadArea = document.getElementById('photoUploadArea');
+        const photoInput = document.getElementById('photoInput');
+        const photoPreview = document.getElementById('photoPreview');
+
+        photoUploadArea.addEventListener('click', () => photoInput.click());
+
+        photoUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            photoUploadArea.classList.add('dragover');
+        });
+
+        photoUploadArea.addEventListener('dragleave', () => {
+            photoUploadArea.classList.remove('dragover');
+        });
+
+        photoUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            photoUploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files, photoPreview);
+        });
+
+        photoInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files, photoPreview);
+        });
+
+        // 물건 업로드
+        const itemUploadArea = document.getElementById('itemUploadArea');
+        const itemInput = document.getElementById('itemInput');
+        const itemPreview = document.getElementById('itemPreview');
+
+        itemUploadArea.addEventListener('click', () => itemInput.click());
+
+        itemUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            itemUploadArea.classList.add('dragover');
+        });
+
+        itemUploadArea.addEventListener('dragleave', () => {
+            itemUploadArea.classList.remove('dragover');
+        });
+
+        itemUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            itemUploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files, itemPreview);
+        });
+
+        itemInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files, itemPreview);
+        });
+
+        function handleFiles(files, previewArea) {
+            previewArea.innerHTML = '';
+            
+            Array.from(files).forEach((file, index) => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = (e) => {
+                        const previewItem = document.createElement('div');
+                        previewItem.className = 'preview-item';
+                        previewItem.innerHTML = `
+                            <img src="${e.target.result}" alt="Preview ${index}">
+                            <button class="remove-btn" onclick="this.parentElement.remove()">×</button>
+                        `;
+                        previewArea.appendChild(previewItem);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function submitPhotos() {
+            const previews = document.querySelectorAll('#photoPreview .preview-item');
+            if (previews.length === 0) {
+                alert('사진을 먼저 선택해주세요.');
+                return;
+            }
+
+            // 로딩 표시
+            const btn = event.target;
+            btn.textContent = '업로드 중...';
+            btn.disabled = true;
+
+            // 실제로는 서버로 전송
+            setTimeout(() => {
+                alert(`${previews.length}장의 사진이 추모 페이지에 추가되었습니다! ✨`);
+                btn.textContent = '사진 추가하기';
+                btn.disabled = false;
+                document.getElementById('photoPreview').innerHTML = '';
+            }, 2000);
+        }
+
+        function submitItem() {
+            const previews = document.querySelectorAll('#itemPreview .preview-item');
+            if (previews.length === 0) {
+                alert('물건 사진을 먼저 선택해주세요.');
+                return;
+            }
+
+            const btn = event.target;
+            btn.textContent = 'AI 처리 중...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                alert('물건이 3D로 변환되어 추모 공간에 추가되었습니다! 🎉\n\n3D 공간에서 확인해보세요.');
+                btn.textContent = '3D 공간에 추가하기';
+                btn.disabled = false;
+                document.getElementById('itemPreview').innerHTML = '';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
