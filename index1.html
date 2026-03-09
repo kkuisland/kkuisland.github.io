@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>꾸아일랜드 - 반려동물을 수국으로 다시 만나세요</title>
+    <meta name="description" content="차가운 유골함 대신 매년 피어나는 수국으로. 반려동물 유골 전용 특수 토양과 친환경 화분으로 새로운 추모를 시작하세요.">
+    <meta name="keywords" content="반려동물 추모, 수국 화분, 반려동물 유골, 펫로스 치유, 성장형 추모, PLA 화분">
+    
+    <meta property="og:title" content="꾸아일랜드 - 반려동물을 수국으로 다시 만나세요">
+    <meta property="og:description" content="멈춰있는 추모가 아닌, 매년 피어나는 수국과 함께하는 살아있는 추모">
+    <meta property="og:type" content="website">
+
+      <!-- Open Graph / 소셜 미디어 공유 최적화 -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kkuisland.github.io/">
+    <meta property="og:site_name" content="꾸아일랜드">
+    <meta property="og:title" content="꾸아일랜드 - 반려동물을 수국으로 다시 만나세요">
+    <meta property="og:description" content="차가운 유골함 대신 매년 피어나는 수국으로. 멈춰있는 추모에서 자라나는 기억으로의 새로운 시작입니다.">
+    <meta property="og:image" content="https://kkuisland.github.io/images/og-kkuisland.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="꾸아일랜드 - 반려동물 성장형 추모 수국 화분">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="꾸아일랜드 - 다시 피어나는 사랑">
+    <meta name="twitter:description" content="멈춰있는 추모에서 자라나는 기억으로">
+    <meta name="twitter:image" content="https://kkuisland.github.io/images/og-kkuisland.png">
+    
+    <!-- 추가 SEO 최적화 -->
+    <link rel="canonical" href="https://kkuisland.github.io/">
+    <meta name="author" content="정세인, 꾸아일랜드">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --hydrangea-blue: #7B9FAB;
+            --hydrangea-purple: #9B8FB5;
+            --hydrangea-pink: #D4A5C3;
+            --soft-green: #A8C5A0;
+            
+            --primary: #7B9FAB;
+            --primary-dark: #5A7A88;
+            --secondary: #9B8FB5;
+            --accent: #D4A5C3;
+            --text-dark: #2C3E50;
+            --text-light: #5D6D7E;
+            --bg-light: #F4F7F6;
+            --white: #FFFFFF;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 유틸리티 클래스 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* 이미지 프롬프트 박스 */
+        .img-prompt-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px dashed var(--secondary);
+            color: var(--text-light);
+            padding: 2.5rem;
+            text-align: center;
+            border-radius: 20px;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-prompt-label {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* 헤더 */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-sub {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            display: block;
+            margin-top: -5px;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .contact-btn {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, 
+                rgba(123, 159, 171, 0.08) 0%, 
+                rgba(155, 143, 181, 0.08) 100%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            color: var(--text-dark);
+            word-break: keep-all;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            word-break: keep-all;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.3rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            display: inline-block;
+            margin: 0 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* 섹션 공통 스타일 */
+        .section {
+            padding: 8rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.3;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* 문제 제기 섹션 */
+        .problem-section {
+            background: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .problem-content h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .problem-content p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-highlight {
+            background: linear-gradient(135deg, 
+                rgba(123, 159, 171, 0.1) 0%, 
+                rgba(155, 143, 181, 0.1) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            margin-top: 2rem;
+        }
+
+        .problem-highlight p {
+            margin: 0;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* 제품 구성 섹션 */
+        .product-section {
+            background: var(--bg-light);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .product-card h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+
+        .product-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* 프로세스 섹션 */
+        .process-section {
+            background: var(--white);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .process-card h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .process-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* 감성 스토리 섹션 */
+        .story-section {
+            background: var(--bg-light);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        .story-grid:nth-child(even) {
+            direction: rtl;
+        }
+
+        .story-grid:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .story-content h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .story-content p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-quote {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--secondary);
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        .story-quote p {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* CTA 섹션 */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--primary);
+            padding: 1.3rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        /* 연락처 섹션 */
+        .contact-section {
+            background: var(--white);
+        }
+
+        .contact-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .contact-card {
+            background: var(--bg-light);
+            padding: 3rem 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .contact-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-note {
+            background: linear-gradient(135deg, 
+                rgba(123, 159, 171, 0.1) 0%, 
+                rgba(155, 143, 181, 0.1) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .contact-note p {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-note strong {
+            color: var(--primary);
+        }
+
+        /* 푸터 */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 2rem 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .footer-info {
+            color: #808080;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #606060;
+        }
+
+        /* 애니메이션 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 반응형 */
+        @media (max-width: 1024px) {
+            .problem-grid,
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .story-grid:nth-child(even) {
+                direction: ltr;
+            }
+
+            .product-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 5rem 0;
+            }
+
+            .btn-primary,
+            .btn-white {
+                width: 100%;
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* 이미지 공통 스타일 */
+        .brand-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            display: block;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .brand-image:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 히어로 섹션 전용 스타일 */
+        .hero-image {
+            max-width: 100%;
+            border-radius: 24px;
+            box-shadow: var(--shadow-lg);
+            margin: 2.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* 제품 카드 이미지 */
+        .product-image {
+            width: 100%;
+            height: 220px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* 프로세스 카드 이미지 */
+        .process-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-sm);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 브랜드 스토리 이미지 전용 스타일 */
+        .story-image {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .story-image:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .story-image-grief {
+            filter: sepia(20%) saturate(0.8);
+        }
+
+        .story-image-hope {
+            filter: saturate(1.2) brightness(1.1);
+        }
+
+        .story-image-healing {
+            filter: warmth(10%) brightness(1.05);
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <nav>
+            <div class="logo">
+                꾸아일랜드
+                <span class="logo-sub">KKU ISLAND</span>
+            </div>
+            <div class="nav-links">
+                <a href="#product">제품 소개</a>
+                <a href="#process">진행 과정</a>
+                <a href="#story">브랜드 스토리</a>
+                <a href="#contact" class="contact-btn">상담 신청</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>
+                    차가운 유골함 대신,<br>
+                    <span class="highlight">살아있는 수국</span>으로 품어주세요
+                </h1>
+                <p class="hero-description">
+                    반려동물의 유골을 안전하게 흙으로 돌려보내고,<br>
+                    매년 색이 변하는 수국을 통해 아이와 다시 교감하는 새로운 추모 방식입니다.
+                </p>
+                
+                <!-- 기존의 <div class="img-prompt-box">...</div> 전체를 아래 코드로 교체 -->
+                <div style="text-align: center;">
+                    <img src="./images/hero-main.webp" 
+                        alt="따뜻한 거실 창가에 놓인 수국 화분과 반려동물 사진" 
+                        class="hero-image"
+                        loading="lazy">
+                </div>
+                
+                <div>
+                    <a href="#product" class="btn-primary">제품 자세히 보기</a>
+                    <a href="#contact" class="btn-primary btn-secondary">상담 신청하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 문제 제기 섹션 -->
+    <section class="section problem-section">
+        <div class="container">
+            <div class="problem-grid fade-in">
+                <div class="problem-content">
+                    <h2>언제까지 어두운 곳에<br>가둬두어야 할까요?</h2>
+                    <p>
+                        딱딱한 도자기 유골함, 습기가 차는 돌함...<br>
+                        사랑했던 아이의 마지막 모습이 차갑게 굳어있는 것은 아닌가요?
+                    </p>
+                    <p>
+                        시간이 지나도 변하지 않는 유골함을 볼 때마다<br>
+                        마음 한 켠이 무거워지는 것은 당연합니다.
+                    </p>
+                    <div class="problem-highlight">
+                        <p>
+                            꾸아일랜드는 '보관'이 아닌 '순환'을 제안합니다.<br>
+                            아이를 자연으로 돌려보내고, 꽃으로 다시 피어나게 해주세요.
+                        </p>
+                    </div>
+                </div>
+                
+             <img src="./images/problem-solution.webp" 
+                alt="차가운 유골함에서 생명력 있는 수국으로 변화하는 과정" 
+                class="brand-image"
+                loading="lazy">
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 제품 구성 섹션 -->
+    <section id="product" class="section product-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label">What We Offer</p>
+                <h2 class="section-title">꾸아일랜드 추모 화분 키트</h2>
+                <p class="section-subtitle">
+                    소중한 아이를 위해 과학적으로 설계된 3가지 핵심 구성품으로<br>
+                    안전하고 아름다운 추모를 완성합니다.
+                </p>
+            </div>
+
+            <div class="product-grid">
+                <div class="product-card fade-in">
+                  <img src="./images/product-pot.webp" 
+                        alt="친환경 PLA 소재의 통기성 화분" 
+                        class="product-image"
+                        loading="lazy">
+                    <h3>01. 숨 쉬는 PLA 화분</h3>
+                    <p>옥수수 전분으로 만든 친환경 소재입니다. 공기가 잘 통하고 과습을 방지하여 식물과 유골이 쾌적하게 숨 쉴 수 있는 구조로 설계되었습니다.</p>
+                </div>
+
+                <div class="product-card fade-in">
+                    <img src="./images/product-soil.webp" 
+                        alt="유골 전용 특수 배합토" 
+                        class="product-image"
+                        loading="lazy">
+                    <h3>02. 유골 전용 배합토</h3>
+                    <p>유골의 염분을 중화시키고 pH를 조절하는 특수 기술이 적용된 토양입니다. 아이가 식물의 영양분이 되어 건강하게 자랄 수 있게 돕습니다.</p>
+                </div>
+
+                <div class="product-card fade-in">
+                <img src="./images/product-hydrangea.webp" 
+                    alt="파스텔 톤의 아름다운 수국 꽃" 
+                    class="product-image"
+                    loading="lazy">
+                    <h3>03. 기억의 꽃, 수국</h3>
+                    <p>토양의 성분에 따라 색이 변하는 수국은 아이의 상태를 시각적으로 보여줍니다. "진심"이라는 꽃말처럼 변치 않는 사랑을 상징합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로세스 섹션 -->
+    <section id="process" class="section process-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label">How It Works</p>
+                <h2 class="section-title">간단한 3단계로<br>새로운 추모를 시작하세요</h2>
+                <p class="section-subtitle">
+                    복잡하지 않습니다. 누구나 쉽게 시작할 수 있도록 자세한 가이드와 함께 도와드립니다.
+                </p>
+            </div>
+
+            <div class="process-grid">
+                <div class="process-card fade-in">
+                    <div class="process-number">1</div>
+                    <img src="./images/process-consultation.webp" 
+                            alt="전문 상담사와의 따뜻한 상담 장면" 
+                            class="process-image"
+                            loading="lazy">
+                    <h3>상담 및 주문</h3>
+                    <p>전화 또는 이메일로 상담을 신청해주세요. 반려동물의 상황에 맞는 적합한 화분 크기와 토양 배합을 전문가가 안내해드립니다.</p>
+                </div>
+
+                <div class="process-card fade-in">
+                    <div class="process-number">2</div>
+                    <img src="./images/process-kit.webp" 
+                        alt="정성스럽게 포장된 꾸아일랜드 키트" 
+                        class="process-image"
+                        loading="lazy">
+                    <h3>키트 수령 및 준비</h3>
+                    <p>맞춤 제작된 화분, 특수 배합토, 수국 묘목, 그리고 상세한 설명서가 포함된 키트를 받으시게 됩니다. 모든 준비물이 포함되어 있습니다.</p>
+                </div>
+
+                <div class="process-card fade-in">
+                    <div class="process-number">3</div>
+                    <img src="./images/process-planting.webp" 
+                        alt="조심스럽게 수국을 심는 과정" 
+                        class="process-image"
+                        loading="lazy">
+                    <h3>식재 및 성장</h3>
+                    <p>설명서에 따라 유골과 배합토를 섞어 화분에 담고, 수국을 심습니다. 이후 일반 화분처럼 관리하면 매년 봄, 수국이 아름답게 피어납니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 감성 스토리 섹션 -->
+    <section id="story" class="section story-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <p class="section-label">Our Story</p>
+                <h2 class="section-title">왜 우리는 이 일을 시작했을까요</h2>
+                <p class="section-subtitle">
+                    이별은 끝이 아닙니다. 새로운 형태로 계속되는 사랑의 이야기입니다.
+                </p>
+            </div>
+
+            <div class="story-grid fade-in">
+                <div class="story-content">
+                    <h3>멈춰있는 시간 속에서</h3>
+                    <p>
+                        반려동물을 떠나보낸 후, 우리는 유골함을 서랍 깊숙이 넣어둡니다. 
+                        너무 아파서 꺼내보지도 못하고, 그렇다고 버릴 수도 없어서요.
+                    </p>
+                    <p>
+                        시간은 흐르지만 유골함은 그대로입니다. 
+                        마치 그 순간에 멈춰버린 것처럼요. 
+                        우리는 생각했습니다. 이 아픔을 다른 방식으로 표현할 수는 없을까?
+                    </p>
+                    <div class="story-quote">
+                        <p>
+                            "추억을 간직하되, 시간은 계속 흘러가게 하고 싶었습니다."
+                        </p>
+                    </div>
+                </div>
+                <img src="./images/story-grief.webp" 
+                    alt="유골함을 조심스럽게 들고 있는 그리움의 순간" 
+                    class="story-image story-image-grief"
+                    loading="lazy">
+            </div>
+
+            <div class="story-grid fade-in">
+               <img src="./images/story-hope.webp" 
+                    alt="아침 햇살을 받는 수국, 새로운 희망의 시작" 
+                    class="story-image story-image-hope"
+                    loading="lazy">
+                <div class="story-content">
+                    <h3>다시 피어나는 생명</h3>
+                    <p>
+                        식물은 자랍니다. 계절마다 변하고, 매년 새롭게 꽃을 피웁니다. 
+                        우리의 감정도 그렇습니다. 슬픔은 점점 추억이 되고, 
+                        추억은 따뜻한 미소가 됩니다.
+                    </p>
+                    <p>
+                        수국을 선택한 이유는 단순합니다. 
+                        색이 변하기 때문입니다. 파란색에서 분홍색으로, 
+                        보라색으로 변하는 수국처럼 우리의 마음도 변해갑니다.
+                    </p>
+                    <div class="story-quote">
+                        <p>
+                            "사랑하는 마음은 변하지 않지만, 표현하는 방식은 변할 수 있습니다."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-grid fade-in">
+                <div class="story-content">
+                    <h3>함께하는 일상</h3>
+                    <p>
+                        매일 아침 수국에 물을 주고, 햇빛을 쬐어줍니다. 
+                        새 잎이 돋아나는 것을 보고, 꽃봉오리가 맺히는 것을 기다립니다. 
+                        이 작은 일상이 치유가 됩니다.
+                    </p>
+                    <p>
+                        더 이상 서랍 속에 숨겨둔 유골함이 아닙니다. 
+                        매일 보고, 돌보고, 함께 성장하는 살아있는 추모입니다.
+                    </p>
+                    <div class="story-quote">
+                        <p>
+                            "이별은 끝이 아니라, 다른 형태로 계속되는 사랑입니다."
+                        </p>
+                    </div>
+                </div>
+                <img src="./images/story-healing.webp" 
+                    alt="수국 화분을 바라보며 위로받는 평화로운 순간" 
+                    class="story-image story-image-healing"
+                    loading="lazy">
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content fade-in">
+                <h2>지금 바로 시작하세요</h2>
+                <p>
+                    더 이상 서랍 속에 보관만 하지 마세요.<br>
+                    매년 피어나는 수국과 함께 새로운 추억을 만드세요.
+                </p>
+                <a href="#contact" class="btn-white">무료 상담 신청하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 연락처 섹션 -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="section-header fade-in">
+                    <h2 class="section-title">궁금하신 점이 있으신가요?</h2>
+                    <p class="section-subtitle">
+                        제품에 대한 문의나 주문 상담이 필요하시면 편하게 연락주세요.<br>
+                        진심을 담아 답변드리겠습니다.
+                    </p>
+                </div>
+
+                <div class="contact-cards">
+                    <div class="contact-card fade-in">
+                        <span class="contact-card-icon">📧</span>
+                        <h3>이메일 문의</h3>
+                        <p>
+                            <a href="mailto:seinj0331@gmail.com">seinj0331@gmail.com</a>
+                        </p>
+                        <p>24시간 내 답변드립니다</p>
+                    </div>
+
+                    <div class="contact-card fade-in">
+                        <span class="contact-card-icon">📱</span>
+                        <h3>전화 상담</h3>
+                        <p>
+                            <a href="tel:010-4034-1037">010-4034-1037</a>
+                        </p>
+                        <p>평일 10:00 - 19:00<br>주말 예약 상담 가능</p>
+                    </div>
+                </div>
+
+                <div class="contact-note fade-in">
+                    <p>
+                        <strong>대표:</strong> 정세인 (꾸아일랜드)
+                    </p>
+                    <p>
+                        상담 시 반려동물의 크기, 화장 방법, 원하시는 화분 크기 등을 
+                        미리 생각해주시면 더 정확한 안내가 가능합니다.
+                    </p>
+                    <p>
+                        <strong>현재 사전 예약</strong>을 받고 있으며, 
+                        2024년 하반기부터 순차적으로 배송 예정입니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">꾸아일랜드</div>
+            <p class="footer-tagline">"멈춰있는 추모에서, 자라나는 기억으로"</p>
+            
+            <div class="footer-info">
+                <p><strong>꾸아일랜드 (KKU ISLAND)</strong></p>
+                <p>대표: 정세인</p>
+                <p>이메일: seinj0331@gmail.com</p>
+                <p>전화: 010-4034-1037</p>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 KKU ISLAND. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
